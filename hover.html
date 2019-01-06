@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./css/hover.css">
+<body>
+		<div class="row col-xs-offset-1">
+												<div class="col-xs-4 column">
+													<figure><img src="images/Yellow1.jpg" width="121px" height="100px" onclick="hover(this);"></figure>
+												</div>
+												<div class="col-xs-4 column ">
+													<figure><img src="images/Yellow2.jpg" width="121px" height="100px" onclick="hover(this);"></figure>
+													
+												</div>
+												<div class="col-xs-4 column" >
+													<figure><img src="images/Yellow3.jpg" width="121px" height="100px" onclick="hover(this);"></figure>
+												</div>
+												
+				</div>
+
+		<div class="container">
+				<img id="ExpandedImg" style="width: 400px">
+				<div id="imgText"></div>
+		</div>
+		<script type="text/javascript">
+				function hover(imgs) {
+					var expandImg=document.getElementById("ExpandedImg");
+					var imgText = document.getElementById("imgText");
+					ExpandedImg.src=imgs.src;
+					imgText.innerHtml=imgs.alt;
+					expandImg.parentElement.style.display="block";
+				}
+		</script>
+
+
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

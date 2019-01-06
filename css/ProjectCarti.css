@@ -1,0 +1,149 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.Header{
+	height: 70px;
+}
+.Content{
+	height: 400px;
+}
+.Footer{
+	height: 70px;
+}
+.carousel-inner img {  
+      width: 100%;  
+      height:650px; 
+   
+}
+/*Chèn chữ vào ảnh ở vị trí giữa*/
+.centered {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-style: AvenirLTPro-Light;
+    color: white;
+}
+
+/*Hình ảnh to lên nhỏ xuống ( 3 ảnh )*/
+.row1 {
+	margin-left: 45px;
+	margin-right: 45px;
+	margin-top: -15px;
+}
+
+
+.column {
+	display: inline-block;
+	text-align: center;
+}
+/*cac hình được liên kết với nhau*/
+figure {
+	overflow: hidden;
+}
+
+
+a:hover {
+	text-decoration: none;
+}
+
+.column img {
+	display: block;
+	max-width: 400px;
+	height: 323px;
+}
+.col-sm-* {
+	padding-right: 0px;
+  	padding-left: 0px;
+}
+.col-md-4 {
+	padding-right: 0px;
+  	padding-left: 0px;
+}
+.col-xs-* {
+	padding-right: 0px;
+  	padding-left: 0px;
+}
+}
+@media screen and (max-width: 640px) {
+	.column img {
+	display: block;
+	width: 150px;
+	height: 100px;
+	}
+	.row1 {
+	margin-left: 20px;
+	margin-top: -15px;
+	}
+
+}
+@media screen and (max-width: 300px) {
+	.column img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	}
+	.row1 {
+	margin-left: 2px;
+	margin-top: -15px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+    .carousel-inner {
+        width:100%; 
+        height:300px;       
+    }
+    .carousel-item {
+        width:100%;
+        height:300px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .carousel-inner {
+        width:100%; 
+        height:200px;       
+    }
+    .carousel-item {
+        width:100%;
+        height:200px;
+    }
+}
+
+.container-fluid {
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+/*Zoom In*/
+.column#zoomIn img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.column#zoomIn:hover img {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+/*Zoom Out*/
+.column#zoomOut img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.column#zoomOut:hover img {
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+
+
+
+
+
