@@ -1,35 +1,88 @@
-<?php include('header.php') ?>
+<?php 
+include('header.php');
+include('connect.php');
+session_start();
+ ?>
 
 <?php
 //require('db.php');
 
 // If form submitted, insert values into the database.
 if (isset($_REQUEST['username'])){
-        // removes backslashes
+       // removes backslashes
 	$username = stripslashes($_REQUEST['username']);
-        //escapes special characters in a string
 	$username = mysqli_real_escape_string($con,$username); 
+    $password = stripslashes($_REQUEST['password']);
+    $password = mysqli_real_escape_string($con,$password);
+    $address = stripslashes($_REQUEST['address']);
+    $address = mysqli_real_escape_string($con,$address);
 	$email = stripslashes($_REQUEST['email']);
 	$email = mysqli_real_escape_string($con,$email);
-	$password = stripslashes($_REQUEST['password']);
-	$password = mysqli_real_escape_string($con,$password);
-        $query = "INSERT into `users` (username, password, email)
-            VALUES ('$username', '".md5($password)."', '$email')";
-        $result = mysqli_query($con,$query);
-        if($result){
-            echo "<div class='form'>
-<h3>You are registered successfully.</h3>
-<br/>Click here to <a href='login.php'>Login</a></div>";
-        }
-    }else{
+
+}
+
+
+	
+    // $query = "INSERT INTO `users` (user_name,address, password, email)
+    //         VALUES ('$username', '".md5($password)."', '$email')";
+    // $result = mysqli_query($con,$query);
+    //     if($result){
+    //         echo "<div class='form'>
+    //                 <h3>You are registered successfully.</h3>
+    //                 <br/>Click here to <a href='login.php'>Login</a></div>";
+    //     }
+    // }else{
+    // }
 ?>
-<div class="container" >
-        <div class="panel panel-danger" name="from1">
-            <div class="panel-heading">
-                <h1 >Tạo Tài Khoản Mới</h1>
-            </div>
-            <div class="panel-body">
-                <form action="" method='POST' >
+
+<?php 
+    if (isset($_POST['submit'])) {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if(isset($_POST['username']))
+            {
+                $User = $_POST['username'];
+                $_SESSION['username'] = $User;
+            }
+            if(isset($_POST['password']))
+            {
+                $Password = $_POST['password'];
+                $_SESSION['password'] = $Password;
+            }
+            if(isset($_POST['address']))
+            {
+                $Address = $_POST['address'];
+                $_SESSION['address'] = $Address;
+            }
+            if(isset($_POST['email']))
+            {
+                $Email = $_POST['email'];
+                $_SESSION['email'] = $Email;
+            }
+            if ($con) {
+               $query = "INSERT INTO `users` (user_name,address, password, email)
+                         VALUES ('$User', '".password_hash($Password,PASSWORD_DEFAULT)."','$Address', '$Email')";
+                         if (mysqli_multi_query($con, $query)) {
+                            echo "<script language='javascript'>";
+                            echo "alert('Register susseccful')"; 
+                            echo "</script>";
+                        } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        }
+            }
+            
+        }
+    } 
+            
+ ?>
+
+
+<div class="container">
+    <div class="">
+        <h1 >Tạo Tài Khoản Mới</h1>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <input type="text" class="form-control input" name="username" placeholder="User" required="Ban Phai Nhap">
                     </div>
@@ -46,11 +99,10 @@ if (isset($_REQUEST['username'])){
                     <div>
                         <button type="submit" name="submit" value="Register" class="btn btn-danger register">Register</button>
                     </div>
-                </div>
-                </form>
-        </div>      
+        </form>
+    </div>
+                
 </div>
-<?php } ?>
-</body>
-</html>
+
+
 <?php include('footer.php') ?>
