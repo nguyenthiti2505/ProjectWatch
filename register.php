@@ -77,8 +77,8 @@ if (isset($_REQUEST['username'])){
  ?>
 
 
-<div class="container">
-    <div class="">
+<center>
+     <div class="">
         <h1 >Tạo Tài Khoản Mới</h1>
     </div>
     <div>
@@ -101,8 +101,10 @@ if (isset($_REQUEST['username'])){
                     </div>
         </form>
     </div>
+</center>
+   
                 
-</div>
+
 
 
 <?php include('footer.php') ?>

@@ -1,5 +1,5 @@
 drop database if exists Watch;
-create database Watch;
+create database Watch DEFAULT CHARACTER SET UTF8;
 use Watch;
 
 
@@ -28,7 +28,9 @@ id int(11) not null auto_increment,
 user_name varchar(255),
 address varchar(255),
 password varchar(255),
+sdt varchar(100),
 email varchar(255),
+role varchar(255) default 'khachhang',
 primary key (id)
 );
 
@@ -49,9 +51,9 @@ foreign key(prod_id) references product(id),
 foreign key(order_id) references orders(id)
 );
 
-insert into users (user_name, password, address, email) values 
-('Admin', 'password ','', 'doduytho@gmail.com'),
-('Đỗ Duy Thinh','doduythinh', '4 Lê Duẩn', 'doduythinh@gmail.com');
+insert into users (user_name, password, address, email,role) values 
+('Admin', 'password ','', 'doduytho@gmail.com','Admin'),
+('Đỗ Duy Thinh','doduythinh', '4 Lê Duẩn', 'doduythinh@gmail.com','');
 
 insert into category (cat_name) values
 ('Đồng hồ bấm giờ'),
