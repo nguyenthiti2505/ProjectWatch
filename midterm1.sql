@@ -26,6 +26,7 @@ foreign key(category_id) references category (id)
 create table if not exists users (
 id int(11) not null auto_increment,
 user_name varchar(255),
+password varchar(255),
 address varchar(255),
 email varchar(255),
 primary key (id)
@@ -109,27 +110,3 @@ values
 
 
 
-
-insert into prod_orders values
-(1,1,1),
-(7,1,1),
-
-(2,2,1),
-(8,2,1),
-(10,2,1),
-
-(2,3,1),
-(8,3,1),
-(11,3,1),
-
-(3,4,1),
-(9,4,1),
-
-(1,5,1),
-(7,5,1),
-(14,5,1),
-
-(8,6,1),
-(9,6,1),
-(14,6,1),
-(17,6,1);
