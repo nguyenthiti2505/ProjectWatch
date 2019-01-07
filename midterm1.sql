@@ -27,6 +27,7 @@ create table if not exists users (
 id int(11) not null auto_increment,
 user_name varchar(255),
 address varchar(255),
+password varchar(255),
 email varchar(255),
 primary key (id)
 );
@@ -70,8 +71,8 @@ insert into orders (user_name, date) values
 (1,date('2018-12-12')),
 (2,date('2018-01-02')),
 (2,date('2018-01-03')),
-(2,date('2018-03-01')),
-(4,date('2018-03-03'));
+(2,date('2018-03-01'));
+
 
 insert into product 
 (prod_name,		category_id,	price,	quantity,	status,	imported_date) 
@@ -110,26 +111,3 @@ values
 
 
 
-insert into prod_orders values
-(1,1,1),
-(7,1,1),
-
-(2,2,1),
-(8,2,1),
-(10,2,1),
-
-(2,3,1),
-(8,3,1),
-(11,3,1),
-
-(3,4,1),
-(9,4,1),
-
-(1,5,1),
-(7,5,1),
-(14,5,1),
-
-(8,6,1),
-(9,6,1),
-(14,6,1),
-(17,6,1);
