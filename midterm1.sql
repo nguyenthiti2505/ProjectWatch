@@ -71,8 +71,7 @@ insert into orders (user_name, date) values
 (1,date('2018-12-12')),
 (2,date('2018-01-02')),
 (2,date('2018-01-03')),
-(2,date('2018-03-01')),
-(4,date('2018-03-03'));
+(2,date('2018-03-01'));
 
 insert into product 
 (prod_name,		category_id,	price,	quantity,	status,	imported_date) 
