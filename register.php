@@ -8,15 +8,15 @@ session_start();
 //require('db.php');
 
 // If form submitted, insert values into the database.
-if (isset($_REQUEST['username'])){
+if (isset($_POST['username'])){
        // removes backslashes
-	$username = stripslashes($_REQUEST['username']);
+	$username = stripslashes($_POST['username']);
 	$username = mysqli_real_escape_string($con,$username); 
-    $password = stripslashes($_REQUEST['password']);
+    $password = stripslashes($_POST['password']);
     $password = mysqli_real_escape_string($con,$password);
-    $address = stripslashes($_REQUEST['address']);
+    $address = stripslashes($_POST['address']);
     $address = mysqli_real_escape_string($con,$address);
-	$email = stripslashes($_REQUEST['email']);
+	$email = stripslashes($_POST['email']);
 	$email = mysqli_real_escape_string($con,$email);
 
 }
@@ -54,22 +54,54 @@ if (isset($_REQUEST['username'])){
                 $Address = $_POST['address'];
                 $_SESSION['address'] = $Address;
             }
+             if(isset($_POST['sdt']))
+            {
+                $Phone = $_POST['sdt'];
+                $_SESSION['sdt'] = $Phone;
+            }
             if(isset($_POST['email']))
             {
                 $Email = $_POST['email'];
                 $_SESSION['email'] = $Email;
             }
             if ($con) {
-               $query = "INSERT INTO `users` (user_name,address, password, email)
-                         VALUES ('$User', '".password_hash($Password,PASSWORD_DEFAULT)."','$Address', '$Email')";
+               
+                $result1= mysqli_query($con,"SELECT * FROM users");
+                if (mysqli_num_rows($result1) == 0) {
+                     $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
+                         VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
                          if (mysqli_multi_query($con, $query)) {
-                            echo "<script language='javascript'>";
-                            echo "alert('Register susseccful')"; 
-                            echo "</script>";
+                            echo "Register susseccful";
+                            // echo "<script language='javascript'>";
+                            // echo "alert('Register susseccful')"; 
+                            // echo "</script>";
                         } else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
+                    }else{
+                         while($row = mysqli_fetch_array($result1)){
+                    if ($User == $row['user_name']) {
+                         echo "User đã tồn tại vui lòng đăng ký user khác";
+                     } 
+                    else{
+                         $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
+                         VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
+                         if (mysqli_multi_query($con, $query)) {
+                            echo "Register susseccful";
+                            // echo "<script language='javascript'>";
+                            // echo "alert('Register susseccful')"; 
+                            // echo "</script>";
+                        } else {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        }
+                    } 
+                }
+                
+
+              
             }
+                    }
+               
             
         }
     } 
@@ -91,6 +123,9 @@ if (isset($_REQUEST['username'])){
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control input" name="address" placeholder="Address" required="Ban Phai Nhap">
+                    </div>
+                     <div class="form-group">
+                      <input type="text" class="form-control input" name="sdt" placeholder="Phome Number" required="Ban Phai Nhap">
                     </div>
                     <div class="form-group">
                         <a><input type="email"  name="email" class="form-control input" placeholder="Email" required="Ban Phai Nhap"></a>

@@ -51,9 +51,6 @@ foreign key(prod_id) references product(id),
 foreign key(order_id) references orders(id)
 );
 
-insert into users (user_name, password, address, email,role) values 
-('Admin', 'password ','', 'doduytho@gmail.com','Admin'),
-('Đỗ Duy Thinh','doduythinh', '4 Lê Duẩn', 'doduythinh@gmail.com','');
 
 insert into category (cat_name) values
 ('Đồng hồ bấm giờ'),
@@ -68,12 +65,12 @@ insert into category (cat_name) values
 ('Đồng hồ kỹ thuật số');
 
 
-insert into orders (user_name, date) values
+/*insert into orders (user_name, date) values
 (1,date('2018-01-02')),
 (1,date('2018-12-12')),
 (2,date('2018-01-02')),
 (2,date('2018-01-03')),
-(2,date('2018-03-01'));
+(2,date('2018-03-01'));*/
 
 
 insert into product 
