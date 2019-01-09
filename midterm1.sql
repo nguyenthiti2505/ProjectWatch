@@ -18,6 +18,7 @@ price int(11),
 quantity int(11),
 status int(1),
 imported_date date,
+img varchar(255),
 note text,
 primary key(id),
 foreign key(category_id) references category (id)
@@ -30,6 +31,7 @@ address varchar(255),
 password varchar(255),
 sdt varchar(100),
 email varchar(255),
+img varchar(255),
 role varchar(255) default 'khachhang',
 primary key (id)
 );

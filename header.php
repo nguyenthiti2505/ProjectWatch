@@ -5,6 +5,7 @@
 
 	<title></title>
 </head>
+
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./css/ProjectCar1.css">
 <link rel="stylesheet" type="text/css" href="./css/ProjectCarti.css">
@@ -67,11 +68,11 @@
       <div class="input-group-prepend">
           <button onclick="validateForm()" class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
       </div>
-    </div>
+    </div>s
     </div>
        <a class="nav-link" href="modal-giohang.html"><img class="giohang" src="images/giohang.png"></a>
        <a class="nav-link" href="register.php">Register</a>
-        <a class="nav-link" href="modal-giohang.html">Login</a>
+        <a class="nav-link" href="Login.php">Login</a>
 
 
 </div>

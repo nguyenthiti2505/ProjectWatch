@@ -65,44 +65,32 @@ if (isset($_POST['username'])){
                 $_SESSION['email'] = $Email;
             }
             if ($con) {
-               
                 $result1= mysqli_query($con,"SELECT * FROM users");
                 if (mysqli_num_rows($result1) == 0) {
-                     $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
-                         VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
-                         if (mysqli_multi_query($con, $query)) {
+                    $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
+                            VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
+                        if (mysqli_multi_query($con, $query)){
                             echo "Register susseccful";
-                            // echo "<script language='javascript'>";
-                            // echo "alert('Register susseccful')"; 
-                            // echo "</script>";
-                        } else {
+                        }else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
-                    }else{
-                         while($row = mysqli_fetch_array($result1)){
-                    if ($User == $row['user_name']) {
-                         echo "User đã tồn tại vui lòng đăng ký user khác";
-                     } 
-                    else{
-                         $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
-                         VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
-                         if (mysqli_multi_query($con, $query)) {
-                            echo "Register susseccful";
-                            // echo "<script language='javascript'>";
-                            // echo "alert('Register susseccful')"; 
-                            // echo "</script>";
-                        } else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                        }
-                    } 
-                }
-                
-
-              
-            }
+                }else{
+                    while($row = mysqli_fetch_array($result1)){
+                        if ($User == $row['user_name']) {
+                             echo "User đã tồn tại vui lòng đăng ký user khác";
+                         } 
+                        else{
+                             $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
+                             VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
+                             if (mysqli_multi_query($con, $query)) {
+                                echo "Register susseccful";
+                            } else {
+                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            }
+                        } 
                     }
-               
-            
+                }
+            } 
         }
     } 
             
