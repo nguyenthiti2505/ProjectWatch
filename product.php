@@ -1,7 +1,7 @@
 <?php 
 include('header.php');
 include('connect.php');
-session_start();
+//session_start();
 //include('cart.php');
 //include('index.php');
  ?>
@@ -60,6 +60,7 @@ session_start();
             echo "<div style='width: 32% ; float: left; border-style: ridge;'>";
             echo "<p>" . $i . "</p>";
             echo "<p>" . $row['prod_name'] . "</p>";
+            echo "<img style='width: 30%; height: 140px;' src=". $row['image'] . ">"; 
             echo "<p>" . $row['price'] . "</p>";
             echo "<p>" . $row['quantity'] . "</p>";
             echo "<p><a href='index.php?page=products&action=add&id={$row['id']}'><img class='giohang' src='images/giohang.png'></a></p>";

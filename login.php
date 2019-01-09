@@ -1,57 +1,76 @@
-<?php
-include 'header.php';
-include 'footer.php';
-require('db.php');
+<?php 
+include('header.php');
+include('connect.php');
 session_start();
-// If form submitted, insert values into the database.
-if (isset($_POST['user_name'])){
-        // removes backslashes
-	$user_name = stripslashes($_REQUEST['user_name']);
-        //escapes special characters in a string
-	$user_name = mysqli_real_escape_string($con,$user_name);
-	$password = stripslashes($_REQUEST['password']);
-	$password = mysqli_real_escape_string($con,$password);
-	//Checking is user existing in the database or not
-        $query = "SELECT * FROM `users` WHERE user_name='$user_name'
-and password='".md5($password)."'";
-	$result = mysqli_query($con,$query) or die(mysql_error());
-	$rows = mysqli_num_rows($result);
-        if($rows==1){
-	    $_SESSION['user_name'] = $user_name;
-            // Redirect user to index.php
-	    header("Location: viewsanpham.php");
-         }else{
-	echo "<div class='form'>
-<h3>user_name/password is incorrect.</h3>
-<br/>Click here to <a href='login.php'>Login</a></div>";
-	}
-    }else{
+ ?>
+
+ <?php 
+if (isset($_POST['user'])){
+       // removes backslashes
+  $username = stripslashes($_POST['user']);
+  $username = mysqli_real_escape_string($con,$username); 
+    $password = stripslashes($_POST['password']);
+    $password = mysqli_real_escape_string($con,$password);
+  }
+
+  ?>
+<?php
+   if (isset($_POST['login'])) {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['user']))
+            {
+                $User = $_POST['user'];
+            }
+        if(isset($_POST['password']))
+            {
+                $Password = $_POST['password'];
+            } 
+        if ($con){ 
+            $result1= mysqli_query($con,"SELECT * FROM users");
+                while($row = mysqli_fetch_array($result1)){
+                    if ($User == $row['user_name'] && password_verify($_POST['password'],password_hash($_SESSION['password'],PASSWORD_DEFAULT))) {
+                       echo "Login susseccful"; 
+                       header('Location: product.php');
+                    }else{ 
+                            echo "<script language='javascript'>";
+                            echo "alert('Login no susseccful')"; 
+                            echo "</script>";
+                    }
+                }     
+        }
+      }
+    }
+                      
 ?>
-<div class="container">
-<form action="" method="post" name="login">
-	<div class="panel panel-danger" name="from1">
-            <div class="panel-heading">
-                <h1>Log In</h1>
+
+  <content>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+            <form method="post"> 
+            <!-- Vertical -->
+            <h1><strong> <pre>               LOG IN</pre> </strong></h1>
+            <div class="form-group center" style="">
+               <label for="myEmail">User Name</label><br />
+               <input type="text" class="form-control" name="user" style="width: 500px;" placeholder="User Name" required="Ban Phai Nhap" ><br />
+               <label for="myPassword">Password</label><br />
+               <input type="password" class="form-control" name="password" style="width: 500px;" placeholder="Password" required="Ban Phai Nhap" ><br />
+               <button type="submit" class="btn btn-info " name="login">Log in by facebook</button>
+               <button type="submit" class="btn btn-primary button" name="login" >Log in by Google Chrome</button>   
             </div>
-            <div class="panel-body">
-		<div class="form-group">
-	        <input type="text" class="form-control input" name="user_name" placeholder="Tên" value="<?php if(isset($_COOKIE["user_name"])) { echo $_COOKIE["user_name"]; } ?>" class="input-field" required >
-	    </div>
-	    <div class="form-group">
-	        <input type="password" class="form-control input" name="password" placeholder="Mật khẩu"
-	        value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>" class="input-field" required >
-	    </div>
-	    <div>
-	    	<input type="checkbox" name="remember"> Remember me
-	    </div><br>
-	    <div>
-	        <button type="submit" name="submit" value="Login" class="btn btn-danger register">Login</button>
-	    </div>
-</form>
-</div>
-<p>Not registered yet? <a href='register.php'>Register Here</a></p>
-</div>
-	
-<?php } ?>
+          </form> 
+        </div>
+        <div class="col-md-4">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15662.997184111862!2d106.68219945!3d11.05741355!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1541561650719" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </content>
+<?php include('footer.php') ?>
+
+
+
+	 <!-- 	<script src="js/jquery-3.3.1.js"></script>
+      <script src="js/bootstrap.js"></script>
 </body>
-</html>
+</html> -->

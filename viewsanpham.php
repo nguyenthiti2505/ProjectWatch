@@ -1,7 +1,7 @@
 <?php 
-include ('header.php');
-require('db.php');
-include("auth.php");
+include('header.php');
+require('connect.php');
+//include("auth.php");
  ?>
 <!DOCTYPE html>
 <html>
@@ -83,6 +83,3 @@ include("auth.php");
 </div>
 	
 	
-
-</body>
-</html>

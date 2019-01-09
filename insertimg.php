@@ -56,17 +56,21 @@ if(isset($_POST["submit"])) {
 ?>
 
 <?php
-// Include the database configuration file
-
-// Get images from the database
-$query1 = mysqli_query($con,"SELECT img FROM users ORDER BY id DESC");
+function image()
+{
+	$query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
 
 if(mysqli_num_rows($query1) > 0){
     while($row = mysqli_fetch_assoc($query1)){
-        $imageURL = 'uploads/'.$row["img"];
+        $imageURL = 'uploads/'.$row["image"];
 ?>
     <img src="<?php echo $imageURL; ?>" alt="" />
 <?php }
 }else{ ?>
     <p>No image(s) found...</p>
-<?php } ?>
+<?php }
+}
+// Include the database configuration file
+
+// Get images from the database
+ ?>

@@ -18,8 +18,7 @@ price int(11),
 quantity int(11),
 status int(1),
 imported_date date,
-img varchar(255),
-note text,
+image mediumblob,
 primary key(id),
 foreign key(category_id) references category (id)
 );

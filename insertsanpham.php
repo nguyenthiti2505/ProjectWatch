@@ -1,15 +1,17 @@
 <?php
 include 'header.php';
-require('db.php');
-include("auth.php");
+require('connect.php');
+//include("auth.php");
 $status = "";
 
-if(isset($_POST['new']) && $_POST['new']==1){
+if(isset($_POST['submit']) && $_POST['new']==1){
+
+
     $targetDir = "uploads/";
-    $fileName = basename($_FILES["file"]["name"]);
+    $fileName = $targetDir.basename($_FILES["file"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-
+    move_uploaded_file($_FILES['file']['tmp_name'], $fileName);
     $prod_name=$_REQUEST['prod_name'];
     $category_id=$_REQUEST['category_id'];
     $price=$_REQUEST['price'];
@@ -24,26 +26,32 @@ if(isset($_POST['new']) && $_POST['new']==1){
 
     mysqli_query($con,$ins_query) or die(mysql_error());
     //echo "Succesfully Updated";
-    header('Location: viewsanpham.php');
+    //header('Location: viewsanpham.php');
         
 }
 ?>
 
-<?php
-    $query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
-        if(mysqli_num_rows($query1) > 0){
-            while($row = mysqli_fetch_assoc($query1))
-                {
-                    $imageURL = 'uploads/'.$row["image"];
-?>
-                        <img src="<?php echo $imageURL; ?>" alt="" />
-<?php 
-                }
-}else{ 
-    ?>
-        <p>No image(s) found...</p>
 
-    <?php } ?>
+
+<!-- <?php
+
+    // $query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
+    //     if(mysqli_num_rows($query1) > 0){
+    //         while($row = mysqli_fetch_assoc($query1))
+    //             {
+    //                 $imageURL = 'uploads/'.$row["image"];
+?>
+                       // <img src="<?php echo $imageURL; ?>" alt="" />
+<?php 
+              //  }
+//}else{ 
+    ?>
+    //    <p>No image(s) found...</p>
+
+    <?php //} ?>
+ -->
+
+
 
 
 
