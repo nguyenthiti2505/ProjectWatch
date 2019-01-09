@@ -1,17 +1,4 @@
-<?php
-include 'header.php';
-require('db.php');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Welcome Home</title>
-<link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-	<div class="index">
-		<div id="menu">
+<div id="menu">
 		    <ul>
 		      <br><br>
 		      <li><a href="viewsanpham.php">Quản Lý Sản Phẩm</a></li>
@@ -22,11 +9,9 @@ require('db.php');
 		      <br>
 		      <li><a href="viewsanpham">Quản Lý Khách Hàng</a></li>
 		    </ul>
-		</div>
-		<div class="sanpham">
-
-			
-		</div>
-	</div>
-</body>
-</html>
+</div>
+<script>
+function myFunction() {
+  alert(location.hostname);
+}
+</script>

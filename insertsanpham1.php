@@ -6,9 +6,9 @@ include 'footer.php';
 // If form submitted, insert values into the database.
 if (isset($_REQUEST['user_name'])){
         // removes backslashes
-	$user_name = stripslashes($_REQUEST['user_name']);
+	$prod_name = stripslashes($_REQUEST['prod_name']);
         //escapes special characters in a string
-	$user_name = mysqli_real_escape_string($con,$user_name); 
+	$prod_name = mysqli_real_escape_string($con,$prod_name); 
 	$email = stripslashes($_REQUEST['email']);
 	$email = mysqli_real_escape_string($con,$email);
 	$password = stripslashes($_REQUEST['password']);
