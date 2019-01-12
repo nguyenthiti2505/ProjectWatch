@@ -1,11 +1,10 @@
 <?php 
+session_start();
 include('header.php');
 include('connect.php');
-//session_start();
 //include('cart.php');
 //include('index.php');
- ?>
-<?php 
+
   
     if(isset($_GET['action']) && $_GET['action']=="add"){   
         $id=intval($_GET['id']);       
@@ -75,9 +74,7 @@ echo "</div>";
 
 ?>
 
-    <div style="width: 1000%; float: left;">
-        
-    </div>
+   
 
 
 

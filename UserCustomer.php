@@ -1,7 +1,7 @@
 <?php 
+session_start();
 include('header.php');
 include('connect.php');
-session_start();
  global $count;
  $count = 0;
  ?>
@@ -25,39 +25,40 @@ session_start();
 
 
 		<?php 
-		$result = mysqli_query($con,"SELECT * FROM users");
-		echo "<form method='post' enctype='multipart/form-data'>";
-		echo "<table border='1' class = 'table'>	
-		<tr>
-		<th>ID</th>
-		<th>User_Name</th>
-		<th>Address</th>
-		<th>Phone Number</th>
-		<th>Email</th>
-		<th>Xem</th>
-		</tr>";
-		$i = 1;
-		while($row = mysqli_fetch_array($result))
-		{
-			echo "<tr>";
-			echo "<td>" . $i . "</td>";
-			echo "<td>" . $row['user_name'] . "</td>";
-			echo "<td>" . $row['address'] . "</td>";
-			echo "<td>" . $row['sdt'] . "</td>";
-			echo "<td>" . $row['email'] . "</td>";
-			echo "<td><a href='delete1.php?id=".$row['id']."' >Delete</a></td>";
-			echo "</tr>";
-			$i++;
-		}
-		echo "</table>";
-		echo " </form>";
-		//echo mysqli_query($con,"SELECT count(*) FROM users;");
+			$result = mysqli_query($con,"SELECT * FROM users");
+			echo "<form method='post' enctype='multipart/form-data'>";
+			echo "<table border='1' class = 'table'>	
+			<tr>
+			<th>ID</th>
+			<th>User_Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>Xem</th>
+			</tr>";
+			$i = 1;
+			while($row = mysqli_fetch_array($result))
+			{
+				echo "<tr>";
+				echo "<td>" . $i . "</td>";
+				echo "<td>" . $row['user_name'] . "</td>";
+				echo "<td>" . $row['address'] . "</td>";
+				echo "<td>" . $row['sdt'] . "</td>";
+				echo "<td>" . $row['email'] . "</td>";
+				echo "<td><a href='delete1.php?id=".$row['id']."' >Delete</a></td>";
+				echo "</tr>";
+				$i++;
+			}
+			echo "</table>";
+			echo " </form>";
+			//echo mysqli_query($con,"SELECT count(*) FROM users;");
 
 		 ?>
 
-<div>Tổng số users:  <input type="text" name="usernumber" value='<?php $result2=mysqli_query($con,"SELECT count(*) as `total` from users");
-$data=mysqli_fetch_assoc($result2);
-echo $data['total']; ?>'></div>
+		<div>Tổng số users:  <input type="text" name="usernumber" value='<?php $result2=mysqli_query($con,"SELECT count(*) as `total` from users");
+			$data=mysqli_fetch_assoc($result2);
+			echo $data['total']; ?>'>
+		</div>
 
 <?php 
 	  if (isset($_POST['search'])) {
@@ -88,10 +89,10 @@ echo $data['total']; ?>'></div>
 					echo "</tr>";
 					$i++;
 				}
-			echo "</table>";
-			echo " </form>";
-				  	}	
-				  }	
+				echo "</table>";
+				echo " </form>";
+		 	}	
+		}	
 ?>
 
 

@@ -33,23 +33,23 @@ if(isset($_POST['submit']) && $_POST['new']==1){
 
 
 
-<!-- <?php
+<?php
 
-    // $query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
-    //     if(mysqli_num_rows($query1) > 0){
-    //         while($row = mysqli_fetch_assoc($query1))
-    //             {
-    //                 $imageURL = 'uploads/'.$row["image"];
+    $query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
+        if(mysqli_num_rows($query1) > 0){
+            while($row = mysqli_fetch_assoc($query1))
+                {
+                    $imageURL = 'uploads/'.$row["image"];
 ?>
-                       // <img src="<?php echo $imageURL; ?>" alt="" />
+                     <img src="<?php echo $imageURL; ?>" alt="" />
 <?php 
-              //  }
-//}else{ 
+               }
+}else{ 
     ?>
-    //    <p>No image(s) found...</p>
+       <p>No image(s) found...</p>
 
-    <?php //} ?>
- -->
+    <?php } ?>
+
 
 
 

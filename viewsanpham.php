@@ -11,6 +11,16 @@ require('connect.php');
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+	<?php 
+	  if (isset($_POST['search'])) {
+	  	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		  		$research = $_POST['research'];
+
+		  	}
+		  }
+		  		
+?>
+
 <div class="index">
 	<div class="menu">
 		<?php include 'menudoc.php' ?>	
@@ -27,7 +37,7 @@ require('connect.php');
 					<div class="col-md-4 search">
 						<form class="example" method="post" action="">
 				  			<input type="text" placeholder="Search.." name="search">
-				  			<button type="submit" value="submit"><i class="fa fa-search"></i></button>
+				  			<button type="submit" name="search">search</button>
 						</form>
 					</div>
 				</td>
@@ -53,7 +63,7 @@ require('connect.php');
 				<tbody>
 					<?php
 						$count=1;
-						$sel_query="Select * from product ORDER BY id desc;";
+						$sel_query="SELECT * FROM product ORDER BY id desc;";
 						$result = mysqli_query($con,$sel_query);
 							while($row = mysqli_fetch_assoc($result)) { ?>
 							<tr><td align="center"><?php echo $count; ?></td>
@@ -63,7 +73,7 @@ require('connect.php');
 								<td align="center"><?php echo $row["quantity"]; ?></td>
 								<td align="center"><?php echo $row["status"]; ?></td>
 								<td align="center"><?php echo $row["imported_date"]; ?></td>
-								<td align="center"><?php echo $row["image"]; ?></td>
+								<td align="center"><?php echo "<img style='width: 90%; height: 140px;' src=". $row['image'] . ">"; ?></td>
 								<td align="center">
 									<a href="editsanpham.php?id=<?php echo $row["id"]; ?>">Edit</a>
 								</td>
@@ -81,5 +91,6 @@ require('connect.php');
 </div>
 				
 </div>
+<?php include('footer.php'); ?>
 	
 	

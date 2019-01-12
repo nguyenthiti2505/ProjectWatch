@@ -1,7 +1,9 @@
 <?php
-require('db.php');
+//session_start();
+//include ('header.php');
+include('connect.php');
 include("auth.php");
-include ('header.php');
+
 
     $id=$_REQUEST['id'];
     $query = "SELECT * from product where id='".$id."'"; 

@@ -1,14 +1,15 @@
 <?php 
-include('header.php');
-include('connect.php');
 session_start();
+//include('header.php');//Đổi tên header lại
+include('connect.php');
+
  ?>
 
  <?php 
 if (isset($_POST['user'])){
        // removes backslashes
-  $username = stripslashes($_POST['user']);
-  $username = mysqli_real_escape_string($con,$username); 
+    $username = stripslashes($_POST['user']);
+    $username = mysqli_real_escape_string($con,$username); 
     $password = stripslashes($_POST['password']);
     $password = mysqli_real_escape_string($con,$password);
   }
@@ -30,17 +31,16 @@ if (isset($_POST['user'])){
                 while($row = mysqli_fetch_array($result1)){
                     if ($User == $row['user_name'] && password_verify($_POST['password'],password_hash($_SESSION['password'],PASSWORD_DEFAULT))) {
                        echo "Login susseccful"; 
-                       header('Location: product.php');
+                       header("Location: Home.php");
                     }else{ 
-                            echo "<script language='javascript'>";
-                            echo "alert('Login no susseccful')"; 
-                            echo "</script>";
+                      echo "<script language='javascript'>";
+                      echo "alert('Login no susseccful')"; 
+                      echo "</script>";
                     }
                 }     
-        }
-      }
-    }
-                      
+            }
+          }
+        }                 
 ?>
 
   <content>
