@@ -68,9 +68,5 @@ include('connect.php');
         </form>
     </div>
 </center>
-
-
-
-
-
+<br>
 <?php include('footer.php') ?>

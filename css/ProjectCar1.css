@@ -16,9 +16,9 @@ li a:hover {
 	width: 45px;
 	height: 45px;
 }
-.form-control {
-	width: 217px;
-}
+/*.form-control {
+	width: 400px;
+}*/
 .btn-search:link, .btn-search:visited {
 	  color: #fff;
 }

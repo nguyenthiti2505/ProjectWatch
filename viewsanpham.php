@@ -11,34 +11,34 @@ require('connect.php');
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-	<?php 
-	  if (isset($_POST['search'])) {
-	  	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		  		$research = $_POST['research'];
-
-		  	}
-		  }
-		  		
-?>
-
 <div class="index">
-	<div class="menu">
+	<div class="menusp">
 		<?php include 'menudoc.php' ?>	
 	</div>
 	<div class="sanpham">
-		<div>
+		<div class="row">
 			<tr>
 				<td>
 					<div class="col-md-8">
-						<center><h2>Quản lý Sản Phẩm</h2></center>
+						<center><h1>Quản lý Sản Phẩm</h1></center>
 					</div>	
 				</td>
 				<td>
-					<div class="col-md-4 search">
-						<form class="example" method="post" action="">
-				  			<input type="text" placeholder="Search.." name="search">
-				  			<button type="submit" name="search">search</button>
-						</form>
+					<div class="col-md-4 searchsp">
+						<div style="
+							  padding: 6px 10px;
+							  margin-top: 8px;
+							  margin-right: 16px;
+							  background: #ddd;
+							  font-size: 17px;
+							  border: none;
+							  cursor: pointer;
+							">
+							    <form method="post">
+							      <input type="text" placeholder="Search.." name="research">
+							      <button type="submit" name="search">search</button>
+							    </form>
+  						</div>
 					</div>
 				</td>
 			</tr>
@@ -63,7 +63,7 @@ require('connect.php');
 				<tbody>
 					<?php
 						$count=1;
-						$sel_query="SELECT * FROM product ORDER BY id desc;";
+						$sel_query="Select * from product ORDER BY id desc;";
 						$result = mysqli_query($con,$sel_query);
 							while($row = mysqli_fetch_assoc($result)) { ?>
 							<tr><td align="center"><?php echo $count; ?></td>
@@ -78,7 +78,7 @@ require('connect.php');
 									<a href="editsanpham.php?id=<?php echo $row["id"]; ?>">Edit</a>
 								</td>
 								<td align="center">
-									<a href="deletesanpham.php?id=<?php echo $row["id"]; ?>">Delete</a>
+									<a href="deletesanpham.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Are you sure delete?')">Delete</a>
 								</td>
 								<td align="center">
 									<a href="insertsanpham.php?id=<?php echo $row["id"]; ?>">Insert</a>
@@ -89,8 +89,53 @@ require('connect.php');
 		</table>
 	</div>	
 </div>
-				
 </div>
-<?php include('footer.php'); ?>
+<div>
+	<?php 
+	  if (isset($_POST['search'])) {
+	  	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		  		$research = $_POST['research'];
+		  		$sqlsearch = "SELECT * FROM product WHERE prod_name LIKE '%$research%' OR status LIKE '%$research%' OR category_id LIKE '%$research%' OR price LIKE '%$research%'  OR quantity LIKE '%$research%' ";
+		  		$result1 = mysqli_query($con,$sqlsearch);
+		  		echo "<form method='post' enctype='multipart/form-data'>";
+				echo "<table border='1' class = 'table'>	
+					<tr>
+						<th><strong>S.No</strong></th>
+						<th><strong>Prod_name</strong></th>
+						<th><strong>Category</strong></th>
+						<th><strong>Price</strong></th>
+						<th><strong>Quantity</strong></th>
+						<th><strong>Status</strong></th>
+						<th><strong>Date</strong></th>
+						<th><strong>Images</strong></th>
+						<th><strong>Edit</strong></th>
+						<th><strong>Delete</strong></th>
+						<th><strong>Insert</strong></th>
+					</tr>";
+				$i = 1;
+				while($row = mysqli_fetch_array($result1))
+				{
+					echo "<tr>";
+					echo "<td>" . $i . "</td>";
+					echo "<td>" . $row['prod_name'] . "</td>";
+					echo "<td>" . $row['category_id'] . "</td>";
+					echo "<td>" . $row['price'] . "</td>";
+					echo "<td>" . $row['quantity'] . "</td>";
+					echo "<td>" . $row['status'] . "</td>";
+					echo "<td>" . $row['imported_date'] . "</td>";
+					echo "<td>" . $row['image'] . "</td>";
+					echo "<td><a href='editsanpham.php?id=".$row['id']."' >Edit</a></td>";
+					echo "<td><a href='insertsanpham.php?id=".$row['id']."' >Insert</a></td>";
+					echo "<td><a href='deletesanpham.php?id=".$row['id']."' >Delete</a></td>";
+					echo "</tr>";
+					$i++;
+				}
+				echo "</table>";
+				echo " </form>";
+		 	}	
+		}	
+?>
+</div>			
+
 	
 	

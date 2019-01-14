@@ -1,0 +1,121 @@
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.background{
+	background-image: url("Image/Yellow.jpg");
+	min-height: 380px;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.header{
+	padding-left: 1px;
+	padding-right: 0px;
+	padding-top: 97px;
+	background-color: #e8e1e1;
+}
+.columns image{
+	width: 400px;
+	height: 300px;
+}
+.backSmall{
+	background-color:#e8e1e1; 
+	padding-top: 50px;
+	padding-left: 25px;
+}
+.chiTiet{
+
+	padding-left: 25px;
+}
+hr{
+	width: 100%;
+}
+h2{
+	font-size: 31px;
+}
+h5{
+	padding-left: 120px;
+}
+.buy{
+	border: 1px solid #d0cccc;
+}
+.imageHover{
+	display: block;
+	float: left;
+	width: 50px;
+	height: 50px;
+}
+.row{
+	padding-top: 5px;
+}
+.thongTin {
+	padding-left: 7px;
+	padding-right: 7px;
+}
+.thongTin1{
+	padding-right: 15px;
+}
+
+.qty{
+	padding-left: 10px;
+}
+.buttonqty{
+	padding-left: 10px;
+	width: 100px;
+}
+.text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.top-left {
+	color: white;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    padding-left: 20px;
+    padding-top: 15px;
+    font-size: 20px;
+}
+.cart{
+	width: 400px;
+}
+.pay{
+	padding-left: 10px;
+	width: 100px;
+}
+
+.thanh{
+	width :30px;
+}
+
+#menu ul {
+  list-style-type: none;
+  text-align: center;
+  background-color: #e8e1e1;
+}
+#menu li {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -5px;
+}
+#menu a {
+  text-decoration: none;
+  display: block;
+}
+#menu a:hover {
+  background: #F1F1F1;
+}
+#menu li {
+ position: relative;
+}
+

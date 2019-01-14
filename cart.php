@@ -1,7 +1,11 @@
+<?php session_start(); ?>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <?php 
-
     include('connect.php');
-    session_start();
+    
      ?>
    <!--  <?php 
 // if(isset($_POST['submit'])){ 
@@ -16,17 +20,18 @@
 //         } 
 //     }
      ?> -->
-<h1>View cart</h1> 
+<center><h1>View cart</h1></center> 
 <a href="index.php?page=product">Go back to products page</a> 
 <form method="post" action="index.php?page=cart">
 <!-- <?php //print_r($_SESSION['cart']); ?>  -->
       
-    <table class="table"> 
+    <center><table class="table table table-striped" style="width: 80%;border: 0.5px solid black"> 
         <tr> 
             <th>Name</th> 
             <th>Quantity</th> 
             <th>Price</th>
-            <th>Images</th> 
+            <th>Images</th>
+            
         </tr> 
         
         <?php 
@@ -47,7 +52,7 @@
             <td><?php echo $row['prod_name'] ?></td> 
             <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
             <td><?php echo $row['price'] ?>$</td> 
-            <td><?php echo "<img style='width: 90%; height: 140px;' src=". $row['image'] . ">"; ?></td>
+            <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
         </tr> 
             <!--   -->
         <?php
@@ -61,8 +66,8 @@
         }
         ?> 
     </table> 
+</center>
     <br /> 
-    <button type="submit" name="submit">Update Cart</button> 
+    <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center> 
 </form> 
 <br /> 
-<p>To remove an item, set it's quantity to 0. </p>

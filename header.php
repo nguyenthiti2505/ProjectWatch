@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,19 +15,19 @@
 <link rel="stylesheet" type="text/css" href="./css/ProjectCar1.css">
 <link rel="stylesheet" type="text/css" href="./css/ProjectCarti.css">
 <link rel="stylesheet" type="text/css" href="./css/Product.css">
-<!-- <link rel="stylesheet" type="text/css" href="./css/stylety.css"> -->
+<link rel="stylesheet" type="text/css" href="./css/stylety.css">
 
 <!--  <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
-
-<link rel="stylesheet" href="css/hieuunganh.css">
-<body>
 <header>
+  <link rel="stylesheet" href="css/hieuunganh.css">
+<body>
+<div>
   <nav class="navbar navbar-fixed-top navbar-expand-md" style="background: black;" >
 
      <h4 class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">Menu
     <!-- <span class="navbar-toggler-icon"></span> -->
   </h4>
-  <div class="navbar-item navbar-brand"><img class="img" src="./images/logo.jpg"></div>
+  <a href="home.php"><div class="navbar-item navbar-brand"><img class="img" src="./images/logo.jpg"></div></a>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto">
        
@@ -77,10 +77,12 @@
       </div>
     </div>s
     </div>
-       <a class="nav-link" href="modal-giohang.html"><img class="giohang" src="images/giohang.png"></a>
+       <a class="nav-link" href="index.php?page=cart"><img class="giohang" src="images/giohang.png"></a>
        <a class="nav-link" href="register.php">Register</a>
-        <a class="nav-link" href="Login.php">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
 </div>
   
   </nav>
+</div>
 </header>
+

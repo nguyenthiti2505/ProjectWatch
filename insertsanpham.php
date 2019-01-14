@@ -3,10 +3,7 @@ include 'header.php';
 require('connect.php');
 //include("auth.php");
 $status = "";
-
 if(isset($_POST['submit']) && $_POST['new']==1){
-
-
     $targetDir = "uploads/";
     $fileName = $targetDir.basename($_FILES["file"]["name"]);
     $targetFilePath = $targetDir . $fileName;
@@ -26,14 +23,10 @@ if(isset($_POST['submit']) && $_POST['new']==1){
 
     mysqli_query($con,$ins_query) or die(mysql_error());
     //echo "Succesfully Updated";
-    //header('Location: viewsanpham.php');
-        
+    //header('Location: viewsanpham.php');       
 }
 ?>
-
-
-
-<?php
+<!-- <?php
 
     $query1 = mysqli_query($con,"SELECT image FROM product ORDER BY id DESC");
         if(mysqli_num_rows($query1) > 0){
@@ -48,13 +41,7 @@ if(isset($_POST['submit']) && $_POST['new']==1){
     ?>
        <p>No image(s) found...</p>
 
-    <?php } ?>
-
-
-
-
-
-
+    <?php } ?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,12 +52,15 @@ if(isset($_POST['submit']) && $_POST['new']==1){
 <body>
 <div class="form">
 <div>
-<div class="container-fluid">
-    <div class="panel panel-danger" name="from1">
-            <div class="panel-heading">
-                <h1>Insert</h1>
-            </div>
-            <div class="panel-body">
+    <a href="viewsanpham.php">Describle</a>
+<div class="index">
+    <div class="menusp">
+        <div>
+            <?php include 'menudoc.php' ?>
+        </div>    
+    </div>
+            <div class="sanpham">
+                <center><h1>Insert</h1></center>
                 <form name="form" method="post" action="" enctype="multipart/form-data"> 
                     <input type="hidden" name="new" value="1" />
                 <div class="form-group">
@@ -99,7 +89,6 @@ if(isset($_POST['submit']) && $_POST['new']==1){
                 <center><p><input name="submit" type="submit" value="Submit" /></p></center>
             </form>
 <p style="color:#FF0000;"><?php echo $status; ?></p>
-</div>
 </div>
 </div>
 </div>

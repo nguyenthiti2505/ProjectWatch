@@ -1,35 +1,35 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+       require ('connect.php')
+?>
 	<!-- bai cua ti -->
   <content>
   <div class="container-fluid" >  
-        <div id="SportCar" class="carousel slide" data-ride="carousel">  
+        <div id="SportCar" class="carousel slide " data-ride="carousel">  
             <ol class="carousel-indicators">  
               <li data-target="#SportCar" data-slide-to="0" class="active"></li>  
               <li data-target="#SportCar" data-slide-to="1"></li>  
               <li data-target="#SportCar" data-slide-to="2"></li>  
-              <li data-target="#SportCar" data-slide-to="3"></li>  
-              <li data-target="#SportCar" data-slide-to="4"></li>  
+                
             </ol> 
-              <div class="carousel-inner " data-interval="100">  
-                  <div class="carousel-item active  ">  
-                      <img class="" src="images/slide1.gif" style="width: 100%" alt="Slider-1"  />
-                      <div class="centered"></div>
-                  </div>  
-                  <div class="carousel-item">  
-                      <img class="" src="images/slide2.gif" style="width: 100%" alt="Slider-2" />
-                  </div>  
-                  <div class="carousel-item">  
-                      <img class=""src="images/slide3.gif" style="width: 100%" alt="Slider-3" />  
-                  </div>  
-                  <div class="carousel-item">  
-                      <img class=""src="images/slide4.gif" style="width: 100%" alt="Slider-4" />  
-                       <div class="centered"></div>
-                  </div>  
-                  <div class="carousel-item">  
-                      <img class=""src="images/Slide1.gif"  style="width: 100%" alt="Slider-5" />  
-                       <div class="centered"></div>
-                  </div>  
-              </div>  
+             
+
+             <div class="carousel-inner " data-interval="100">  
+                  <?php
+                  $sql1 = "SELECT * FROM slide";
+                  $resProd = mysqli_query($con,$sql1);
+                  while ($rowProd = mysqli_fetch_assoc($resProd))
+                  {
+                    echo "<div class='carousel-item active'>
+                    <div class='carousel-item active'>  
+                      <img src=".$rowProd['image']." style='width: 100%' alt='Slider-1'/>
+                      <div class='centered'></div>
+                    </div> 
+                  </div>
+                  ";   
+                  } 
+                ?>
+              </div> 
+                 
                   <a class="carousel-control-prev" href="#SportCar" role="button" data-slide="prev">  
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>  
                       <span class="sr-only" style="color: red;">Previous</span>  
@@ -113,7 +113,8 @@
            </div>
           </div>     
               </div>
-
+           <br>
+           <a href="index.php"><center><div><button class="btn-info" style="width: 150px; height: 50px;">Dat Ngay</button></div></center></a> 
 
               <br>
               <div >
@@ -121,77 +122,11 @@
               </div>
               <br>
               <br>
-    <div id="wrapper">
-          <div class="container">
-            <div class="box-index">
-              <center><h1 class="text-danger font-italic">Exhilaration Takes Many Forms</h1></center>
-              <br>
-              <div class="row conProduct">
-                <div class="col-md-9">
-                  <div class="row">
-                    <div  class="col-md-6 productImage">
-                      <a href="#"><img class="img-thumbnail" src="images/bamgio2.jpg"></a>
-                        <a href="#"><h3>Mercedes-AMG GT C/GT C</h3></a>
-                          <div class="row">
-                            <div class="col-xs-5 productPrice"><br ><p> &#9733  &#9733  &#9733  &#9733  &#9733</p></div>
-                            <br />
-                            <div class="col-xs-5 productPriceps"> Price Starting at  : <br> <span style="font-size: 30px"><strong>145,995$</strong></span>
-                            </div>   
-                          </div>
-                      <input type="checkbox" name="compare"><a href="">  Compare</a>
-                        <p style="font-family: FreightTextW01,Georgia">Sporting an adaptive adjustable suspension, active aerodynamics, and trick rear-axle steering, the track-focused variants of the GT are...</p>
-                        <a href="ChiTietYellow.html"><p underline>View Model Details</p></a>
-                    </div>
-                    <div class="col-md-6 productImage">
-                      <a href="#"><img class="img-thumbnail" src="images/baothuc2.jpg"></a>
-                        <a href="#"><h3>Lamborghini HuraCan</h3></a>
-                          <div class="row">
-                            <div class="col-xs-5 productPrice"> <p> &#9733  &#9733  &#9733  &#9733  &#9733</p></div><br /><br />
-                            <div class="col-xs-5 productPriceps"> Price Starting at  : <br> <span style="font-size: 30px"><strong>45,95$</strong></span>
-                            </div>   
-                          </div>
-                    <input type="checkbox" name="compare"><a href="">  Compare</a>
-                      <p style="font-family: FreightTextW01,Georgia">Forget the Chevrolet bow tie—the Corvette's performance puts it on a level with some of the best sports cars in the world.</p>
-                      <a href="ChiTietYellow.html"><p underline>View Model Details</p></a>
-                    </div >
-                  </div>
-                <div class="row">
-                  <div  class="col-md-6 productImage">
-                    <a href="#"><img class="img-thumbnail" src="images/govuong2.jpg"></a>
-                      <a href="#"><h3>Roadster /GRT </h3></a>
-                        <div class="row">
-                          <div class="col-xs-5 productPrice"> <p> &#9733  &#9733  &#9733  &#9733  &#9733</p></div>
-                          <div class="col-xs-5 productPriceps"> Price Starting at  : <br> <span style="font-size: 30px"><strong>145,995$</strong></span></div>  
-                        </div>
-                  <input type="checkbox" name="compare"><a href="">  Compare</a>
-                    <p style="font-family: FreightTextW01,Georgia">Sporting an adaptive adjustable suspension, active aerodynamics, and trick rear-axle steering, the track-focused variants of the GT are...</p>
-                    <a href="ChiTietYellow.html"><p underline>View Model Details</p></a>
-                  </div>
-                <div class="col-md-6 productImage">
-                  <a href="#"><img class="img-thumbnail" src="images/kythuat2.jpg"></a>
-                    <a href="#"><h3>Lamborghini HuraCan</h3></a>
-                  <div class="row">
-                    <div class="col-xs-5 productPrice"> <p> &#9733  &#9733  &#9733  &#9733  &#9733</p></div>
-                      <div class="col-xs-5 productPriceps"> Price Starting at  : <br> <span style="font-size: 30px"><strong>45,95$</strong></span>
-                      </div>  
-                  </div>
-                  <input type="checkbox" name="compare"><a href="">  Compare</a>
-                   <p style="font-family: FreightTextW01,Georgia">Forget the Chevrolet bow tie—the Corvette's performance puts it on a level with some of the best sports cars in the world.</p>
-                  <a href="ChiTietYellow.html"><p underline>View Model Details</p></a>
-                </div >
-                </div>
-                </div>
-                <div class="col-md-3 Advent">
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/M-P4QBt-FWw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                  </div>
-                  <a href="#"><img class="rounded" src="images/xe.gif" style="width: 100%; height: 800px;"></a>
-                </div>
-              </div>
-           </div>             
-    </div>
-  </div>     
+  </div>    
 </div>
 </content>
-<br>
+<br> -->
 <?php include('footer.php') ?>
+
+             
+

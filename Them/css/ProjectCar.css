@@ -1,0 +1,83 @@
+.img{
+  width: 200px;
+  height:60px;
+}
+
+li a:hover {
+  opacity: 0.5;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+/**/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* dùng thuộc tính list-style-type để xóa các dấu đầu dòng.*/
+.dropdown-menu img {
+  background: #0fda2c;
+  list-style-type: none;
+  text-align: center;
+}
+
+/* Tiếp theo, bạn muốn các mục con nằm trên cùng một hàng ngang thì đưa các thẻ <li> về kiểu hiển thị inline-block. */
+#menu li {
+  color: #f1f1f1;
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -5px;
+}
+/* Và cuối cùng bạn thêm style cho các thẻ <a> và đưa kiểu hiển thị của thẻ này thành kiểu block để nó được phủ kín #menu ul */
+#menu a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+#menu a:hover {
+  background: #F1F1F1;
+  color: #333;
+}
+
+/* Tao hieu ung menu con tha xuong 
+
+Bây giờ bạn muốn tùy biến lại .sub-menu để nó không bị đẩy lên thì sử dụng thuộc tính position để tùy biến vị trí một phần tử mà không ảnh hưởng đến phần tử khác. Nhưng tôi muốn .sub-menu nằm gần menu mẹ thì tôi sẽ thiết lập #menu li thành kiểu relative bởi #menu li là item cấp lớn nhất.
+
+*/
+
+
+#menu li {
+ position: relative;
+}
+
+/*   Tiếp theo, thiết lập cho .sub-menu thành kiểu absolute để nó luôn nằm trong menu mẹ*/
+.dropdown-item {
+ display: none;
+ position: absolute;
+}
+
+
+/* ẩn và  hiển thị menu con ra */
+
+.dropdown-item li {
+  display: none;
+}
+
+.dropdown-menu li:hover .dropdown-item {
+ display: block;
+}
+
+/* xóa margin không cần thiết  */
+
+.dropdown-item li {
+ margin-left: 0 !important;
+}
+    

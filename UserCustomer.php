@@ -6,8 +6,8 @@ include('connect.php');
  $count = 0;
  ?>
 
-
-<h1><a href="adduser.php">ADD USER</a></h1>
+<a href="viewsanpham.php">Describle</a>	
+<center><h1><a href="adduser.php">ADD USER</a></h1></center>
 <div style="
   padding: 6px 10px;
   margin-top: 8px;
@@ -94,6 +94,6 @@ include('connect.php');
 		 	}	
 		}	
 ?>
-
+<br><br>
 
 <?php include('footer.php') ?>

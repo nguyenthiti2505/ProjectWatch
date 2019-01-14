@@ -57,11 +57,11 @@ include('connect.php');
    while($row = mysqli_fetch_array($result))
         {   echo "<center>";
             echo "<div style='width: 32% ; float: left; border-style: ridge;'>";
-            echo "<p>" . $i . "</p>";
+           // echo "<p>" . $i . "</p>";
             echo "<p>" . $row['prod_name'] . "</p>";
             echo "<img style='width: 30%; height: 140px;' src=". $row['image'] . ">"; 
             echo "<p>" . $row['price'] . "</p>";
-            echo "<p>" . $row['quantity'] . "</p>";
+            //echo "<p>" . $row['quantity'] . "</p>";
             echo "<p><a href='index.php?page=products&action=add&id={$row['id']}'><img class='giohang' src='images/giohang.png'></a></p>";
             
             echo "</div>";

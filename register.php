@@ -1,9 +1,10 @@
+
 <?php
 session_start(); 
-include('header.php');
+include('header1.php');
 include('connect.php');
  ?>
-
+<br><br>
 <?php
 //require('db.php');
 
@@ -70,7 +71,9 @@ if (isset($_POST['username'])){
                     $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
                             VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
                         if (mysqli_multi_query($con, $query)){
-                            echo "Register susseccful";
+                            echo "<div class='form'>
+                            <h3>You are registered successfully.</h3>
+                            <br/>Click here to <a href='login.php'>Login</a></div>";
                         }else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
@@ -83,7 +86,9 @@ if (isset($_POST['username'])){
                              $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
                              VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
                              if (mysqli_multi_query($con, $query)) {
-                                echo "Register susseccful";
+                                echo "<div class='form'>
+                                <h3>You are registered successfully.</h3>
+                                <br/>Click here to <a href='login.php'>Login</a></div>";
                             } else {
                                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                             }
@@ -98,32 +103,34 @@ if (isset($_POST['username'])){
 
 
 <center>
-     <div class="">
-        <h1 >Tạo Tài Khoản Mới</h1>
-    </div>
     <div>
         <form method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <input type="text" class="form-control input" name="username" placeholder="User" required="Ban Phai Nhap">
+                <div class="panel-body" style="border: 0.5px solid pink;width: 55%">
+                    <h1 >Tạo Tài Khoản Mới</h1>
+                    <div class="form-group" style="width: 50%">
+                      <input type="text" class="form-control input1" name="username" placeholder="User" required="Ban Phai Nhap">
                     </div>
-                     <div class="form-group">
-                        <input type="password" class="form-control input" name="password" placeholder="Mật khẩu mới" required="Ban Phai Nhap" >
+                     <div class="form-group" style="width: 50%">
+                        <input type="password" class="form-control input1" name="password" placeholder="Mật khẩu mới" required="Ban Phai Nhap" >
                     </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control input" name="address" placeholder="Address" required="Ban Phai Nhap">
+                    <div class="form-group" style="width: 50%">
+                      <input type="text" class="form-control input1" name="address" placeholder="Address" required="Ban Phai Nhap">
                     </div>
-                     <div class="form-group">
-                      <input type="text" class="form-control input" name="sdt" placeholder="Phome Number" required="Ban Phai Nhap">
+                     <div class="form-group" style="width: 50%">
+                      <input type="text" class="form-control input1" name="sdt" placeholder="Phome Number" required="Ban Phai Nhap">
                     </div>
-                    <div class="form-group">
-                        <a><input type="email"  name="email" class="form-control input" placeholder="Email" required="Ban Phai Nhap"></a>
+                    <div class="form-group" style="width: 50%">
+                        <a><input type="email"  name="email" class="form-control input1" placeholder="Email" required="Ban Phai Nhap"></a>
                     </div>
                    
                     <div>
                         <button type="submit" name="submit" value="Register" class="btn btn-danger register">Register</button>
                     </div>
+                    <br><br>
+                </div>
         </form>
     </div>
+    <br>
 </center>
    
                 
