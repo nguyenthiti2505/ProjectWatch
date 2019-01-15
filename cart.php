@@ -23,7 +23,7 @@
 
 
 <center><h1>View cart</h1></center> 
-<a href="index.php?page=product">Go back to products page</a> 
+<!-- <a href="index.php?page=product">Go back to products page</a>  -->
 <form method="post" action="index.php?page=cart">
 <!-- <?php //print_r($_SESSION['cart']); ?>  -->
       
@@ -33,7 +33,7 @@
             <th>Quantity</th> 
             <th>Price</th>
             <th>Images</th>
-            
+            <th>Delete Product</th>
         </tr> 
         
         <?php 
@@ -55,17 +55,19 @@
             <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
             <td><?php echo $row['price'] ?>$</td> 
             <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
+            <?php echo "<td><a href='deletecart.php'>Delete</a></td>"; ?> 
         </tr> 
-            <!--   -->
+            
         <?php
          }
         ?>   
         <?php echo "</br>"; ?>
         <tr> 
-            <td colspan="4">Total Price: <?php echo $totalprice ?></td> 
+            <td colspan="5">Total Price: <?php echo $totalprice ?></td> 
         </tr> 
          <?php
         }
+
         ?> 
     </table> 
 </center>

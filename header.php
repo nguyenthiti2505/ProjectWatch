@@ -33,11 +33,10 @@
        
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"style="color: white;">
-          <strong>VEHICLES</strong></a>
+          <strong>KIND OF WATCH</strong></a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="vehicles1.html"><strong>ILX</strong></a>
-          <a class="dropdown-item" href="vehicles2.html"><strong>TLX</strong></a>
-          <a class="dropdown-item" href="menuchitiet3.html"><strong>RLX</strong></a> 
+          <a class="dropdown-item" href="loai1.php"><strong>ĐỒNG HỒ BẤM GIỜ</strong></a>
+          <a class="dropdown-item" href="loai2.php"><strong>ĐỒNG HỒ ĐIỆN TỬ</strong></a> 
         </div>
     
       </li>

@@ -52,8 +52,8 @@
     </div>s
     </div>
        <a class="nav-link" href=""><img class="giohang" src="images/giohang.png"></a>
-       <a class="nav-link" href="">Register</a>
-        <a class="nav-link" href="">Login</a>
+       <a class="nav-link" href="register.php">Register</a>
+        <a class="nav-link" href="login.php">Login</a>
 </div>
   
   </nav>
