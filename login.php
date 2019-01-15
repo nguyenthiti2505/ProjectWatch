@@ -79,15 +79,17 @@ if (isset($_POST['user'])){
         if(isset($_POST['user']))
             {
                 $User = $_POST['user'];
+                $_SESSION['user'] = $User;
             }
         if(isset($_POST['password']))
             {
                 $Password = $_POST['password'];
+                $_SESSION['password'] = $Password;
             } 
         if ($con){ 
             $result1= mysqli_query($con,"SELECT * FROM users");
                 while($row = mysqli_fetch_array($result1)){
-                    if ($User == $row['user_name'] && password_verify($_POST['password'],password_hash($_SESSION['password'],PASSWORD_DEFAULT))) {
+                    if ($User == $row['user_name'] && password_verify($Password,$row['password'])) {
                        echo "Login susseccful";
                        header("Location: product.php");
                      }
@@ -100,7 +102,8 @@ if (isset($_POST['user'])){
                   }
                 }     
             }
-        }                 
+        }   
+        //              
 ?>
 
   <content>

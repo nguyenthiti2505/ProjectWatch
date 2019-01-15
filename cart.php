@@ -20,6 +20,8 @@
 //         } 
 //     }
      ?> -->
+
+
 <center><h1>View cart</h1></center> 
 <a href="index.php?page=product">Go back to products page</a> 
 <form method="post" action="index.php?page=cart">
@@ -68,6 +70,24 @@
     </table> 
 </center>
     <br /> 
-    <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center> 
+    <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center>
+    <center><button class="btn-info" type="submit" name="pay">Pay</button></center> 
 </form> 
 <br /> 
+ <?php 
+    if(isset($_POST['pay'])){ 
+        if(isset($_SESSION['user'])){
+            $user = $_SESSION['user'];
+            //print_r($_SESSION['user']);
+        $query = " INSERT INTO orders (user_name)
+        VALUES('$user')";
+        mysqli_query($con,$query);
+            if (mysqli_multi_query($con,$query)){
+                echo "Register susseccful";
+            }else {
+                            
+            }
+        }
+        session_destroy();
+    }
+?>
