@@ -37,34 +37,20 @@ primary key (id)
 
 create table if not exists orders (
 id int(11) not null auto_increment,
-user_name	int(11),
+cus_id int(11),
 date datetime,
 primary key (id),
-foreign key (user_name) references users (id)
+foreign key (cus_id) references users (id)
 );
 
 create table if not exists prod_orders (
-prod_id int(11),
+prod_id int(11) not null auto_increment,
 order_id int(11),
 quantity int(11),
 primary key(prod_id, order_id),
-foreign key(prod_id) references product(id),
+/*foreign key(prod_id) references product(id),*/
 foreign key(order_id) references orders(id)
 );
-
-create table if not exists slide (
-sli_id int(11) not null auto_increment,
-image mediumblob,
-primary key(sli_id)
-);
-
-insert into slide (image) values
-('uploads/slide1.gif'),
-('uploads/slide2.gif'),
-('uploads/slide3.gif')
-;
-
-
 
 
 
@@ -92,22 +78,41 @@ insert into category (cat_name) values
 insert into product 
 (prod_name,		category_id,	price,	quantity,	status,	imported_date,image) 
 values
-/*('Đồng hồ bấm giờ-Đồng hồ canh giờ nấu nướng', 	1, 350000, 20, 1, date('2017-01-01'),'bamgio1.jpg'),
-('Đồng hồ bấm giờ-Đồng hồ dùng cho nhà bếp', 	1, 300000, 10, 1, date('2017-01-01'),'bamgio2.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 4, date('2015-01-02'),'uploads/slide1.gif'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 4, date('2015-01-02'),'uploads/slide2.gif'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 4, date('2015-01-02'),'uploads/slide3.gif'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 3, date('2015-01-02'),'uploads/moinhat1.png'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 3, date('2015-01-02'),'uploads/moinhat2.png'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 3, date('2015-01-02'),'uploads/moinhat3.png'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/bamgio1.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/baothuc2.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/conu1.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/dientu1.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/danang.jpg'),
+('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 2, date('2015-01-02'),'uploads/govuong1.jpg'),
 
-('Đồng hồ thợ lặn-Seiko ', 	2, 400000, 	10, 1, date('2018-08-01'),'tholan1.jpg'),
-('Đồng hồ thợ lặn-G Sock', 	2, 550000, 	15, 1, date('2016-08-01'),'tholan2.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q2.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q3.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q4.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q5.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/t6.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q7.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q8.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q9.jpg'),
+('Đồng hồ bấm giờ', 	1, 100000, 100, 1, date('2015-01-02'),'uploads/q10.jpg'),
 
-('Đồng hồ báo thức đeo tay thông minh', 3, 600000, 50, 1, date('2017-12-12'),'baothuc1.jpg'),
-('Đồng hồ báo thức có đèn led ', 		3, 75000, 15, 1, date('2018-12-12'),'baothuc2.jpg'),
 
-('Đồng hồ nguyên tử mặt hạt cá tính', 	4, 500000, 10, 1, date('2017-01-01'),'nguyentu1.jpg'),
-('Đồng hồ nguyên tử đo sức khỏe', 4, 8, 1000000, 15, date('2017-01-01'),'nguyentu2.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t1.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t2.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t3.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t4.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t5.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t6.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t7.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t8.jpg'),
+('Đồng hồ thợ lặn', 	2, 100000, 100, 1, date('2015-01-02'),'uploads/t9.jpg'),
 
-('Đồng hồ điện tử',5, 1500000, 50, 	 1, date('2010-01-02'),'dientu1.jpg'),
-('Đồng hồ điện tử kiểu dáng thể thao', 	5, 100000, 100, 1, date('2015-01-02'),'dientu2.jpg'),
 
-('Đồng hồ thông minh',6, 1500000, 50, 	 1, date('2010-01-02'),'thongminh1.jpg'),*/
 ('Đồng hồ thông minh SmartWatch', 	6, 100000, 100, 1, date('2015-01-02'),'uploads/thongminh2.jpg'),
 
 ('Đồng hồ đa năng gỗ vuông',7, 2500000, 20, 	 1, date('2010-01-02'),'uploads/govuong1.jpg'),
@@ -122,8 +127,6 @@ values
 ('Đồng hồ kỹ thuật số',10, 200000, 50, 	 1, date('2018-01-02'),'uploads/kythuat1.jpg'),
 ('Đồng hồ Led kỹ thuật số', 	10, 100000, 125, 1, date('2019-01-01'),'uploads/kythuat2.jpg');
 
-insert into slide (image)
-value ('https://www.google.com/search?q=watch&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj0ioG70OnfAhXRMd4KHRltCFYQ_AUIDigB&biw=1366&bih=626#imgrc=DJyD1ugbnJv6yM:'),('tool2.png'),('tool3.png');
 
 insert into users(user_name,password)
 value ('user','password');

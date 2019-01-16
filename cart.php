@@ -5,7 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <?php 
     include('connect.php');
-    
+    GLOBAL $totalprice;
      ?>
    <!--  <?php 
 // if(isset($_POST['submit'])){ 
@@ -78,18 +78,62 @@
 <br /> 
  <?php 
     if(isset($_POST['pay'])){ 
-        if(isset($_SESSION['user'])){
-            $user = $_SESSION['user'];
-            //print_r($_SESSION['user']);
-        $query = " INSERT INTO orders (user_name)
-        VALUES('$user')";
-        mysqli_query($con,$query);
-            if (mysqli_multi_query($con,$query)){
-                echo "Register susseccful";
-            }else {
-                            
-            }
-        }
+       // if(isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+        
+    $query = "SELECT * FROM users WHERE user_name = '$user' ";
+    $query = "SELECT * FROM orders WHERE id = '$user' ";
+        //mysqli_query($con,$query);
+        //insert_orders($con,$user);
+    $result1 = mysqli_query($con,$query);
+    while($row = mysqli_fetch_assoc($result1)){
+        $cus_id = $row['id'];
+        insert_orders($con,$cus_id);
+        //insert_prd_orders($con,)
+
+     }
+
+
+            // if (mysqli_multi_query($con,$query)){
+            //     $Users = insert_orders($con,1);
+            //     echo $Users;
+            // }else {
+            //     echo "Insert no susseccful"; 
+            //      echo "Error: " . $query . "<br>" . $con->error;
+            //     //print_r($_SESSION['user']) ;         
+            // }
+        //}
         session_destroy();
     }
+
+    function insert_orders($con,$cus_id)
+{
+    
+        
+        $sql = "INSERT INTO orders(cus_id, date)
+        VALUES ('$cus_id',current_date())";
+    
+        if (mysqli_multi_query($con,$sql)) {
+            
+            return $con->insert_id;
+        } else {
+            echo "Error: " . $sql . "<br>" . $con->error;
+        }
+           
+    //}
+}
+function insert_prd_orders($con,$prod_id,$order_id,$quantity)
+{
+    
+        $sql = "INSERT INTO prod_orders(prod_id,order_id,quantity)
+        VALUES ('$prod_id','$order_id','$quantity')";
+    
+        if ($con->query($sql) === TRUE) {
+            echo "";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+}
+               
+       
 ?>

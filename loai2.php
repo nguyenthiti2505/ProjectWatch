@@ -31,7 +31,7 @@ include('connect.php');
 // $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 if ($con) {
     if (checkid_category($con,5) == 0) {
-           $result = mysqli_query($con,"SELECT * FROM product WHERE category_id = 5");
+           $result = mysqli_query($con,"SELECT * FROM product WHERE category_id = 2");
    echo "<form method='post' enctype='multipart/form-data'>";
    echo "<div style='width: 100%; float: left; '>";
    while($row = mysqli_fetch_array($result))
