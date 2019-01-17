@@ -78,11 +78,23 @@
 <br /> 
  <?php 
     if(isset($_POST['pay'])){
-         foreach ($_SESSION['cart'] as $key => $value) {
-            print_r($key);
-        }
+        $user = $_SESSION['user'];
+        foreach ($_SESSION['cart'] as $key => $value) {
+            //print_r($key);
+            $query = "SELECT * FROM users WHERE user_name = '$user' ";
+            $result1 = mysqli_query($con,$query);
+             while($row = mysqli_fetch_assoc($result1))
+            {
+                $cus_id = $row['id'];
+                insert_orders($con,$cus_id,$key,10);
+                //insert_prd_orders($con,$cus_id,$key,10);
+             }
 
-    //     print_r($_SESSION['cart']);
+        }
+        session_destroy();
+    }
+
+    //   //  print_r($_SESSION['cart']);
     // $user = $_SESSION['user'];
     // $query = "SELECT * FROM users WHERE user_name = '$user' ";
     // $result1 = mysqli_query($con,$query);
@@ -91,8 +103,8 @@
        
     //     $cus_id = $row['id'];
     //     insert_orders($con,$cus_id,,10);
-        //insert_prd_orders($con,$cus_id,10);
-     }
+    //     insert_prd_orders($con,$cus_id,10);
+    //  }
 
      // $query1 = "SELECT * FROM orders";
      // $result2 = mysqli_query($con,$query1);
@@ -113,7 +125,7 @@
             //     //print_r($_SESSION['user']) ;         
             // }
         //}
-       // session_destroy();
+        
     
 
     function insert_orders($con,$cus_id,$prod_id, $quantity)
