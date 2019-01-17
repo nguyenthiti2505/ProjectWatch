@@ -48,7 +48,7 @@ prod_id int(11) not null auto_increment,
 order_id int(11),
 quantity int(11),
 primary key(prod_id, order_id),
-/*foreign key(prod_id) references product(id),*/
+foreign key(prod_id) references product(id),
 foreign key(order_id) references orders(id)
 );
 

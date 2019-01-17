@@ -77,21 +77,31 @@
 </form> 
 <br /> 
  <?php 
-    if(isset($_POST['pay'])){ 
-       // if(isset($_SESSION['user'])){
-        $user = $_SESSION['user'];
-        
-    $query = "SELECT * FROM users WHERE user_name = '$user' ";
-    $query = "SELECT * FROM orders WHERE id = '$user' ";
-        //mysqli_query($con,$query);
-        //insert_orders($con,$user);
-    $result1 = mysqli_query($con,$query);
-    while($row = mysqli_fetch_assoc($result1)){
-        $cus_id = $row['id'];
-        insert_orders($con,$cus_id);
-        //insert_prd_orders($con,)
+    if(isset($_POST['pay'])){
+         foreach ($_SESSION['cart'] as $key => $value) {
+            print_r($key);
+        }
 
+    //     print_r($_SESSION['cart']);
+    // $user = $_SESSION['user'];
+    // $query = "SELECT * FROM users WHERE user_name = '$user' ";
+    // $result1 = mysqli_query($con,$query);
+    // while($row = mysqli_fetch_assoc($result1))
+    // {
+       
+    //     $cus_id = $row['id'];
+    //     insert_orders($con,$cus_id,,10);
+        //insert_prd_orders($con,$cus_id,10);
      }
+
+     // $query1 = "SELECT * FROM orders";
+     // $result2 = mysqli_query($con,$query1);
+     // $row = mysqli_fetch_assoc($result2);
+     //    $order_id = $row['id'];
+     //    insert_prd_orders($con,$order_id,10);
+
+     
+
 
 
             // if (mysqli_multi_query($con,$query)){
@@ -103,10 +113,10 @@
             //     //print_r($_SESSION['user']) ;         
             // }
         //}
-        session_destroy();
-    }
+       // session_destroy();
+    
 
-    function insert_orders($con,$cus_id)
+    function insert_orders($con,$cus_id,$prod_id, $quantity)
 {
     
         
@@ -114,24 +124,28 @@
         VALUES ('$cus_id',current_date())";
     
         if (mysqli_multi_query($con,$sql)) {
-            
+            $order_id = $con->insert_id;
+            $sql1 = "INSERT INTO prod_orders(prod_id,order_id,quantity)
+            VALUES ('$prod_id','$order_id','$quantity')";
+            mysqli_multi_query($con,$sql1);
             return $con->insert_id;
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
         }
            
     //}
+
 }
-function insert_prd_orders($con,$prod_id,$order_id,$quantity)
+function insert_prd_orders($con,$order_id,$quantity)
 {
     
-        $sql = "INSERT INTO prod_orders(prod_id,order_id,quantity)
-        VALUES ('$prod_id','$order_id','$quantity')";
+        $sql = "INSERT INTO prod_orders(order_id,quantity)
+        VALUES ('$order_id','$quantity')";
     
         if ($con->query($sql) === TRUE) {
-            echo "";
+            echo "insert thanh cong";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $sql . "<br>" . $con->error;
         }
 }
                
