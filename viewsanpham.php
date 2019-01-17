@@ -10,6 +10,7 @@ require('connect.php');
 <title>View Records</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
+<?php include ('menungang.php'); ?>
 <body>
 <div class="index">
 	<div class="menusp">
@@ -57,7 +58,6 @@ require('connect.php');
 						<th><strong>Images</strong></th>
 						<th><strong>Edit</strong></th>
 						<th><strong>Delete</strong></th>
-						<th><strong>Insert</strong></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,14 +75,14 @@ require('connect.php');
 								<td align="center"><?php echo $row["imported_date"]; ?></td>
 								<td align="center"><?php echo "<img style='width: 90%; height: 140px;' src=". $row['image'] . ">"; ?></td>
 								<td align="center">
-									<a href="editsanpham.php?id=<?php echo $row["id"]; ?>">Edit</a>
+									<a href="editsanpham.php?id=<?php echo $row["id"]; ?>"><button class="btn btn-info">Edit</button></a>
 								</td>
 								<td align="center">
-									<a href="deletesanpham.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Are you sure delete?')">Delete</a>
+									<a href="deletesanpham.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Are you sure delete?')"><button class="btn btn-info">Delete</button></a>
 								</td>
-								<td align="center">
-									<a href="insertsanpham.php?id=<?php echo $row["id"]; ?>">Insert</a>
-								</td>
+								<!-- <td align="center">
+									<a href="insertsanpham.php?id=<?php echo $row["id"]; ?>"><button class="btn btn-info">Insert</button></a>
+								</td> -->
 							</tr>
 					<?php $count++; } ?>
 			</tbody>
@@ -98,7 +98,7 @@ require('connect.php');
 		  		$sqlsearch = "SELECT * FROM product WHERE prod_name LIKE '%$research%' OR status LIKE '%$research%' OR category_id LIKE '%$research%' OR price LIKE '%$research%'  OR quantity LIKE '%$research%' ";
 		  		$result1 = mysqli_query($con,$sqlsearch);
 		  		echo "<form method='post' enctype='multipart/form-data'>";
-				echo "<table border='1' class = 'table'>	
+				echo "<center><table border='1' class = 'table table-bordered' style='width:55%;float:center;'>	
 					<tr>
 						<th><strong>S.No</strong></th>
 						<th><strong>Prod_name</strong></th>
@@ -130,7 +130,7 @@ require('connect.php');
 					echo "</tr>";
 					$i++;
 				}
-				echo "</table>";
+				echo "</table></center>";
 				echo " </form>";
 		 	}	
 		}	
