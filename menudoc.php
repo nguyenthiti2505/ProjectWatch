@@ -1,12 +1,11 @@
-<div id="menu">
+<div id="menudoc">
 		    <ul>
-		      <br><br>
-		      <li><a href="viewsanpham.php">Quản Lý Sản Phẩm</a></li>
 		      <br>
-		      <li><a href="">Quản Lý Đơn Hàng</a></li>
+		      <li><a href="viewsanpham.php"><h5>Trang Quản Trị Admin</h5></a></li>
 		      <br>
-		      <li><a href="cart.php">Quản Lý Giỏ Hàng</a></li>
+		      <small><li><a href="insertsanpham.php"><img src="images/add.png" style="width: 20px;height: 20px"> Thêm sản phẩm</img></a></li></small>
 		      <br>
-		      <li><a href="usercustomer.php">Quản Lý Khách Hàng</a></li>
+		      <small><li><a href="viewsanpham.php"><img src="images/view.png" style="width: 20px;height: 20px"> View sản phẩm</img></a></li></small>
+		      <br>
 		    </ul>
 </div>
