@@ -38,10 +38,13 @@
 
   <?php 
     if(isset($_POST['submit'])){ 
+      $k = 0;
       $sql="SELECT * FROM product WHERE id IN (";
       foreach($_SESSION['cart'] as $id => $value) { 
-        $sql.=$id.","; 
+        $sql.=$id.",";
+        $id = $k; 
       } 
+      print_r($_SESSION['cart']);
       $sql=substr($sql, 0, -1).") ORDER BY prod_name ASC"; 
       $query=mysqli_query($con,$sql); 
       $totalprice=0;
@@ -54,7 +57,7 @@
       <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
       <td><?php echo $row['price'] ?>$</td> 
       <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
-      <?php echo "<td><a href='deletecart.php'>Delete</a></td>"; ?> 
+    <td><?php echo '<td><a href="#" onclick="FunctionName($_GET[\'id\'])">Delete</a>'; ?></td> 
     </tr> 
 
     <?php } ?>   
@@ -111,6 +114,49 @@ function insert_prd_orders($con,$order_id,$quantity)
             echo "Error: " . $sql . "<br>" . $con->error;
         }
 }
-               
-       
+
+function FunctionName($i)
+{
+  if(!empty($_SESSION["cart"])) {
+  foreach($_SESSION["cart"] as $k => $v) {
+if($i == $k)
+unset($_SESSION["cart"][$k]);  
+if(empty($_SESSION["cart"]))
+unset($_SESSION["cart"]);
+}
+}
+}
+
+// function remove_product($id){
+// $id=intval($id);
+// $max=count($_SESSION['cart']);
+// for($i=0;$i<$max;$i++){
+// if($id==$_SESSION['cart'][$i]['id']){
+// unset($_SESSION['cart'][$i]);
+// break;
+// }
+// }
+// $_SESSION['cart']=array_values($_SESSION['cart']);
+
+// if($_REQUEST['command']=='delete' && $_REQUEST['id']>0){
+// remove_product($_REQUEST['id']);
+// }
+// else if($_REQUEST['command']=='clear'){
+// unset($_SESSION['cart']);
+// }
+// else if($_REQUEST['command']=='update'){
+// $max=count($_SESSION['cart']);
+// for($i=0;$i<$max;$i++){
+// $id=$_SESSION['cart'][$i]['id'];
+// $q=intval($_REQUEST['qty'.$id]);
+// if($q>0 && $q<=999){
+// $_SESSION['cart'][$i]['qty']=$q;
+// }
+// else{
+// $msg='Some proudcts not updated!, quantity must be a number between 1 and 999';
+// }
+// }
+// }
+// }
+
 ?>

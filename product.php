@@ -11,8 +11,7 @@ include('connect.php');
         if(isset($_SESSION['cart'][$id])){ 
             $_SESSION['cart'][$id]['quantity']++; 
         }else{ 
-               $result1= mysqli_query($con,"SELECT * FROM product 
-                WHERE id={$id}");
+               $result1= mysqli_query($con,"SELECT * FROM product WHERE id={$id}");
             if(mysqli_num_rows($result1)!=0){ 
                 $row_s=mysqli_fetch_array($result1); 
                 $_SESSION['cart'][$row_s['id']]=array( 

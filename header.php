@@ -26,10 +26,22 @@ include('connect.php');
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"style="color: white;"><strong>KIND OF WATCH</strong></a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"style="color: white;"><strong>PRODUCT PORTFOLIO</strong></a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="loai1.php"><strong>ĐỒNG HỒ BẤM GIỜ</strong></a>
-            <a class="dropdown-item" href="loai2.php"><strong>ĐỒNG HỒ ĐIỆN TỬ</strong></a> 
+          <?php 
+            if ($con) {
+                $result = mysqli_query($con,"SELECT * FROM category ORDER BY id ASC");
+                $i = 0;
+                while($row = mysqli_fetch_array($result)) {
+                  $i++;
+                  echo "<a class='dropdown-item' href='loai$i.php'><strong>";
+                  echo $row['cat_name'];
+                  echo "</strong></a>";
+                }
+              }  
+            ?> 
+           <!--  <a class="dropdown-item" href="loai1.php"><strong>ĐỒNG HỒ BẤM GIỜ</strong></a>
+            <a class="dropdown-item" href="loai2.php"><strong>ĐỒNG HỒ ĐIỆN TỬ</strong></a> --> 
           </div>
         </li>
         <li class="nav-item dropdown">
