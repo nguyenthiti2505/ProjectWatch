@@ -26,128 +26,79 @@
 <!-- <a href="index.php?page=product">Go back to products page</a>  -->
 <form method="post" action="index.php?page=cart">
 <!-- <?php //print_r($_SESSION['cart']); ?>  -->
-      
-    <center><table class="table table table-striped" style="width: 80%;border: 0.5px solid black"> 
-        <tr> 
-            <th>Name</th> 
-            <th>Quantity</th> 
-            <th>Price</th>
-            <th>Images</th>
-            <th>Delete Product</th>
-        </tr> 
-        
-        <?php 
-        if(isset($_POST['submit'])){ 
-            $sql="SELECT * FROM product WHERE id IN ("; 
-          
-            foreach($_SESSION['cart'] as $id => $value) { 
-                $sql.=$id.","; 
-            } 
-            $sql=substr($sql, 0, -1).") ORDER BY prod_name ASC"; 
-            $query=mysqli_query($con,$sql); 
-            $totalprice=0;
-            while($row=mysqli_fetch_array($query)){        
-            $subtotal=$_SESSION['cart'][$row['id']]['quantity']*$row['price']; 
-            $totalprice+=$subtotal;  
-        ?>
-        <tr>
-            <td><?php echo $row['prod_name'] ?></td> 
-            <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
-            <td><?php echo $row['price'] ?>$</td> 
-            <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
-            <?php echo "<td><a href='deletecart.php'>Delete</a></td>"; ?> 
-        </tr> 
-            
-        <?php
-         }
-        ?>   
-        <?php echo "</br>"; ?>
-        <tr> 
-            <td colspan="5">Total Price: <?php echo $totalprice ?></td> 
-        </tr> 
-         <?php
-        }
+  <center>
+  <table class="table table table-striped" style="width: 80%;border: 0.5px solid black"> 
+    <tr> 
+      <th>Name</th> 
+      <th>Quantity</th> 
+      <th>Price</th>
+      <th>Images</th>
+      <th>Delete Product</th>
+    </tr> 
 
-        ?> 
-    </table> 
-</center>
-    <br /> 
-    <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center>
-    <center><button class="btn-info" type="submit" name="pay">Pay</button></center> 
-</form> 
-<br /> 
- <?php 
-    if(isset($_POST['pay'])){
-        $user = $_SESSION['user'];
-        foreach ($_SESSION['cart'] as $key => $value) {
-            //print_r($key);
-            $query = "SELECT * FROM users WHERE user_name = '$user' ";
-            $result1 = mysqli_query($con,$query);
-             while($row = mysqli_fetch_assoc($result1))
-            {
-                $cus_id = $row['id'];
-                insert_orders($con,$cus_id,$key,10);
-                //insert_prd_orders($con,$cus_id,$key,10);
-             }
+  <?php 
+    if(isset($_POST['submit'])){ 
+      $sql="SELECT * FROM product WHERE id IN (";
+      foreach($_SESSION['cart'] as $id => $value) { 
+        $sql.=$id.","; 
+      } 
+      $sql=substr($sql, 0, -1).") ORDER BY prod_name ASC"; 
+      $query=mysqli_query($con,$sql); 
+      $totalprice=0;
+      while($row=mysqli_fetch_array($query)){        
+        $subtotal=$_SESSION['cart'][$row['id']]['quantity']*$row['price']; 
+        $totalprice+=$subtotal;  
+  ?>
+    <tr>
+      <td><?php echo $row['prod_name'] ?></td> 
+      <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
+      <td><?php echo $row['price'] ?>$</td> 
+      <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
+      <?php echo "<td><a href='deletecart.php'>Delete</a></td>"; ?> 
+    </tr> 
 
-        }
-        session_destroy();
+    <?php } ?>   
+
+    <?php echo "</br>"; ?>
+    <tr> 
+      <td colspan="5">Total Price: <?php echo $totalprice ?></td> 
+    </tr> 
+    <?php } ?> 
+
+  </table> 
+</center><br /> 
+
+  <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center>
+  <center><button class="btn-info" type="submit" name="pay">Pay</button></center> 
+</form><br /> 
+<?php 
+  if(isset($_POST['pay'])){
+    $user = $_SESSION['user'];
+    foreach ($_SESSION['cart'] as $key => $value) {     
+      $query = "SELECT * FROM users WHERE user_name = '$user' ";
+      $result1 = mysqli_query($con,$query);
+      while($row = mysqli_fetch_assoc($result1)) {
+        $cus_id = $row['id'];
+        insert_orders($con,$cus_id,$key,$value['quantity']);
+      }
     }
+    session_destroy();
+  }
+?>
 
-    //   //  print_r($_SESSION['cart']);
-    // $user = $_SESSION['user'];
-    // $query = "SELECT * FROM users WHERE user_name = '$user' ";
-    // $result1 = mysqli_query($con,$query);
-    // while($row = mysqli_fetch_assoc($result1))
-    // {
-       
-    //     $cus_id = $row['id'];
-    //     insert_orders($con,$cus_id,,10);
-    //     insert_prd_orders($con,$cus_id,10);
-    //  }
-
-     // $query1 = "SELECT * FROM orders";
-     // $result2 = mysqli_query($con,$query1);
-     // $row = mysqli_fetch_assoc($result2);
-     //    $order_id = $row['id'];
-     //    insert_prd_orders($con,$order_id,10);
-
-     
-
-
-
-            // if (mysqli_multi_query($con,$query)){
-            //     $Users = insert_orders($con,1);
-            //     echo $Users;
-            // }else {
-            //     echo "Insert no susseccful"; 
-            //      echo "Error: " . $query . "<br>" . $con->error;
-            //     //print_r($_SESSION['user']) ;         
-            // }
-        //}
-        
-    
-
-    function insert_orders($con,$cus_id,$prod_id, $quantity)
-{
-    
-        
-        $sql = "INSERT INTO orders(cus_id, date)
-        VALUES ('$cus_id',current_date())";
-    
-        if (mysqli_multi_query($con,$sql)) {
-            $order_id = $con->insert_id;
-            $sql1 = "INSERT INTO prod_orders(prod_id,order_id,quantity)
-            VALUES ('$prod_id','$order_id','$quantity')";
-            mysqli_multi_query($con,$sql1);
-            return $con->insert_id;
-        } else {
+<?php
+function insert_orders($con,$cus_id,$prod_id, $quantity) {
+  $sql = "INSERT INTO orders(cus_id, date) VALUES ('$cus_id',current_date())";
+  if (mysqli_multi_query($con,$sql)) {
+    $order_id = $con->insert_id;
+    $sql1 = "INSERT INTO prod_orders(prod_id,order_id,quantity) VALUES ('$prod_id','$order_id','$quantity')";
+    mysqli_multi_query($con,$sql1);
+    return $con->insert_id;
+  } else {
             echo "Error: " . $sql . "<br>" . $con->error;
-        }
-           
-    //}
-
+  }
 }
+
 function insert_prd_orders($con,$order_id,$quantity)
 {
     
