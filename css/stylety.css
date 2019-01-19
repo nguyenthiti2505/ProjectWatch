@@ -162,9 +162,14 @@ body {
 }
 
 .sanpham{
-  width: 75%;
+  width: 80%;
   float: left;
   height: 500px;
+}
+.menusp{
+  width: 20%;
+  float: left;
+
 }
 
 * {

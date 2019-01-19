@@ -31,18 +31,21 @@ include('connect.php');?>
     </div>
 
     <div class ="row row1">
-      <?php 
-        $sql1 = "SELECT * FROM product WHERE status = 3";
-        $resProd = mysqli_query($con,$sql1);
-        while ($rowProd = mysqli_fetch_assoc($resProd)){
-          echo "<a href = 'ChiTietYellow.html' class = 'column col-md-4 col-sm-4 col-xs-4 embed-responsive embed-responsive-16by9' id = 'zoomIn'><figure><img class='rounded embed-responsive-item'  src = ".$rowProd['image']." ></figure></a>"; 
-        } 
-      ?>  
+      <?php
+            $count=1;
+            $sel_query="SELECT * from product WHERE status = 3";
+            $result = mysqli_query($con,$sel_query);
+              while($row = mysqli_fetch_assoc($result)) { ?>
+                <a href="chitietproduct.php?id=<?php echo $row["id"]; ?>" class = 'column col-md-4 col-sm-4 col-xs-4 embed-responsive embed-responsive-16by9' id = 'zoomIn'><figure><img class='rounded embed-responsive-item'  <?php echo "<img style='width: 300px; height: 300px;' src=". $row['image'] . ">"; ?> ></figure>
+                        </a>
+              </tr>
+      <?php $count++; } ?> 
     </div>
+
 
     <div>
       <br>
-      <h1 ><center><strong>The Car For Your Life</strong></center></h1>
+      <h1 ><center><strong>The Watches For Your Life</strong></center></h1>
       <center><hr style="color: red;"></center>
       <div class="acr-underheading"></div>
       <h2 style="font-family: AvenirLTPro-LightOblique;"><center><q >Exhilaration Takes Many Forms</q></center></h2>

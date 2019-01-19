@@ -51,15 +51,12 @@
         $sql=substr($sql, 0, -1).") ORDER BY prod_name ASC"; 
         $query=mysqli_query($con,$sql); 
         while($row=mysqli_fetch_array($query)){ 
-              
         ?> 
             <p><?php echo $row['prod_name'] ?> x <?php echo $_SESSION['cart'][$row['id']]['quantity'] ?></p> 
         <?php 
-              
         } 
     ?> 
         <hr /> 
-        <a href="index.php?page=cart">Xem Gior Hàng Của Bạn</a> 
     <?php 
           
     }else{ 

@@ -5,8 +5,7 @@ include('connect.php');
  global $count;
  $count = 0;
  ?>
-
-<a href="viewsanpham.php">Describle</a>	
+<?php include 'menungang.php' ?>
 <center><h1><a href="adduser.php">ADD USER</a></h1></center>
 <div style="
   padding: 6px 10px;

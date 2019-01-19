@@ -44,7 +44,7 @@
         $sql.=$id.",";
         $id = $k; 
       } 
-      print_r($_SESSION['cart']);
+      // print_r($_SESSION['cart']);
       $sql=substr($sql, 0, -1).") ORDER BY prod_name ASC"; 
       $query=mysqli_query($con,$sql); 
       $totalprice=0;
@@ -56,21 +56,20 @@
       <td><?php echo $row['prod_name'] ?></td> 
       <td><input type="text" name="quantity[<?php echo $row['id'] ?>]" size="5" value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>" /></td> 
       <td><?php echo $row['price'] ?>$</td> 
-      <td><?php echo "<img style='width: 50%; height: 140px;' src=". $row['image'] . ">"; ?></td>
-    <td><?php echo '<td><a href="#" onclick="FunctionName($_GET[\'id\'])">Delete</a>'; ?></td> 
+      <td><?php echo "<img style='width: 200px; height: 140px;' src=". $row['image'] . ">"; ?></td>
+    <td><?php echo '<a href="#" onclick="FunctionName($_GET[\'id\'])">Delete</a>'; ?></td> 
     </tr> 
 
     <?php } ?>   
 
     <?php echo "</br>"; ?>
     <tr> 
-      <td colspan="5">Total Price: <?php echo $totalprice ?></td> 
+      <td colspan="5" style="text-align:center;font-size: 20px">Total Price: <?php echo $totalprice ?></td> 
     </tr> 
     <?php } ?> 
 
   </table> 
 </center><br /> 
-
   <center><button class="btn-info" type="submit" name="submit">Update Cart</button></center>
   <center><button class="btn-info" type="submit" name="pay">Pay</button></center> 
 </form><br /> 

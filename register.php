@@ -1,15 +1,9 @@
 <?php 
-//session_start();
-include('header.php');
+include('header1.php');
 include('connect.php');
  ?>
-
 <?php
-//require('db.php');
-
-// If form submitted, insert values into the database.
 if (isset($_POST['username'])){
-       // removes backslashes
     $username = stripslashes($_POST['username']);
     $username = mysqli_real_escape_string($con,$username); 
     $password = stripslashes($_POST['password']);
@@ -18,26 +12,10 @@ if (isset($_POST['username'])){
     $address = mysqli_real_escape_string($con,$address);
     $email = stripslashes($_POST['email']);
     $email = mysqli_real_escape_string($con,$email);
-
 }
-
-
-    
-    // $query = "INSERT INTO `users` (user_name,address, password, email)
-    //         VALUES ('$username', '".md5($password)."', '$email')";
-    // $result = mysqli_query($con,$query);
-    //     if($result){
-    //         echo "<div class='form'>
-    //                 <h3>You are registered successfully.</h3>
-    //                 <br/>Click here to <a href='login.php'>Login</a></div>";
-    //     }
-    // }else{
-    // }
 ?>
-
 <?php 
     if (isset($_POST['submit'])) {
-
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(isset($_POST['username']))
             {
@@ -65,34 +43,22 @@ if (isset($_POST['username'])){
                 $_SESSION['email'] = $Email;
             }
             if ($con) {
-                // if (mysqli_num_rows($result1) == 0) {
-                //     $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
-                //             VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
-                //         if (mysqli_multi_query($con, $query)){
-                //             echo "<div class='form'>
-                //             <h3>You are registered successfully.</h3>
-                //             <br/>Click here to <a href='login.php'>Login</a></div>";
-                //         }else {
-                //             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                //         }
-                // }else{
                     if (checkUser($con,$_POST['username']) == 0) {
                             $User = $_POST['username'];
                             $query = "INSERT INTO `users` (user_name,address, password,sdt, email)
                              VALUES ('$User','$Address', '".password_hash($Password,PASSWORD_DEFAULT)."','$Phone','$Email')";
                              if (mysqli_multi_query($con, $query)) {
-                                echo "Register susseccful";
+                                echo '<script language="javascript>';
+                                echo 'alert("Dang nhap than cong")';
+                                echo '</script>';
+                                header("location:login.php");
                             } else {
                                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                             }
-                        //}else{
-                           //echo checkUser($con,$_POST['username']);
-                   }else echo "ddax ton tai";
-                //}
+                   }else echo "Da ton tai";
             } 
         }
     } 
-
     function checkUser($con,$username)
     {
         $result1= mysqli_query($con,"SELECT * FROM users WHERE user_name = '$username' ");
@@ -105,22 +71,7 @@ if (isset($_POST['username'])){
             }
        }
     }
-//     function check_username($connect, $username){
-// if ($connect) {
-// $sql = "SELECT username FROM users WHERE username = '$username' ";
-// $result = $connect->query($sql);
-// if ($result->num_rows > 0) {
-// return 0;
-// } else return 1;
-// } else echo "Failed to connect to MySQL:" .mysqli_connect_error();
-
-//}
-       
-    
-            
  ?>
-
-
 <center>
      <div class="">
         <h1 >Tạo Tài Khoản Mới</h1>
@@ -130,13 +81,13 @@ if (isset($_POST['username'])){
                     <div class="form-group">
                       <input type="text" class="form-control input" name="username" placeholder="User" required="Ban Phai Nhap">
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <input type="password" class="form-control input" name="password" placeholder="Mật khẩu mới" required="Ban Phai Nhap" >
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control input" name="address" placeholder="Address" required="Ban Phai Nhap">
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                       <input type="text" class="form-control input" name="sdt" placeholder="Phome Number" required="Ban Phai Nhap">
                     </div>
                     <div class="form-group">
@@ -149,9 +100,4 @@ if (isset($_POST['username'])){
         </form>
     </div>
 </center>
-   
-                
-
-
-
 <?php include('footer.php') ?>
